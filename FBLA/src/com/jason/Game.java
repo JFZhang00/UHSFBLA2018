@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 package com.jason;
 
 public class Game {
@@ -8,4 +6,3 @@ public class Game {
 		
 	}
 }
->>>>>>> branch 'master' of https://github.com/JFZhang00/UHSFBLA2018.git
