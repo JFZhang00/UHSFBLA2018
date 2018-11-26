@@ -1,6 +1,6 @@
 FBLA Computer Game Simulation & Programming 2018:
 
-
+-
     Objective: -Create a game designed to test a member's knowledge of FBLA
     -Minimum of five different FBLA related topics
     -Game must be "winnable"
@@ -19,6 +19,6 @@ FBLA Computer Game Simulation & Programming 2018:
     -The game should have a menu with an option to quit at any point
 
 
--Agreed on using Java and its .Swing GUI System
--Similar to a game show like Jeopardy? Game just a user interface?
+    -Agreed on using Java and its .Swing GUI System
+    -Similar to a game show like Jeopardy? Game just a user interface?
 
