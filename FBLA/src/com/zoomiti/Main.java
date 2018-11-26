@@ -2,8 +2,6 @@ package com.zoomiti;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
