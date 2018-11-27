@@ -7,8 +7,8 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		SceneSwitcher.stage = primaryStage;
-		SceneSwitcher.setTitleScreen();
+		Controller.stage = primaryStage;
+		Scenes.Title.switchScene();
 		primaryStage.show();
 	}
 
