@@ -8,7 +8,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		SceneSwitcher.stage = primaryStage;
-		SceneSwitcher.INSTANCE.setTitleScreen();
+		SceneSwitcher.setTitleScreen();
 		primaryStage.show();
 	}
 
