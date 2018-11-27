@@ -1,0 +1,38 @@
+// Welcome to the question bank for the FBLA Quiz
+// Strings starting with "//" will be ignored
+// Questions are entered in the following format:
+// 
+// QuestionType
+// Question?
+// Right Answer
+// //This is a valid comment
+// Wrong Answer 1
+// Wrong Answer 2 //This is also a valid comment
+// Wrong Answer 3
+//
+// QuestionType is a number 1-5 that represents the type of Question
+
+
+
+1
+Who is the president of the UHS chapter of FBLA?
+Luis Soto
+David Herring
+Nick //ahs
+Jason
+
+2
+
+2
+a
+a
+a
+a
+a
+
+2
+b
+b
+b
+b
+b
