@@ -1,10 +1,16 @@
-package com.zoomit.fbla;
+package com.zoomiti.fbla;
 
+import java.io.BufferedWriter;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.Writer;
 import java.util.Scanner;
 
 public class QuestionGame implements Serializable {
@@ -25,12 +31,21 @@ public class QuestionGame implements Serializable {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	private final ArrayList<Question>[] questionBank = new ArrayList[5];
+	private QuestionBank questionBank;
 
 	public QuestionGame() {
-		for (int i = 0; i < questionBank.length; i++) {
-			questionBank[i] = new ArrayList<>();
+		QuestionBank newQuestionBank = new QuestionBank();
+
+		try (ObjectInputStream in = new ObjectInputStream(getClass().getResourceAsStream("QuestionBank.ser"))) {
+			questionBank = (QuestionBank)in.readObject();
+		} catch (EOFException e) {
+			questionBank = new QuestionBank();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(questionBank);
 		}
 
 		try (Scanner questionReader = new Scanner(getClass().getResourceAsStream("QuestionBank.txt"))) {
@@ -47,16 +62,39 @@ public class QuestionGame implements Serializable {
 							|| isInteger(wrongAnswer2, 10) || isInteger(wrongAnswer3, 10))
 							&& !(question.isEmpty() || rightAnswer.isEmpty() || wrongAnswer1.isEmpty()
 									|| wrongAnswer2.isEmpty() || wrongAnswer3.isEmpty())) {
-						questionBank[type]
-								.add(new Question(question, rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3));
+						newQuestionBank.add(type,
+								new Question(question, rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3));
 					} else {
 						System.err.println("Question in wrong format this may also have messed up the next question");
 					}
 				}
 			}
-
 		}
-		System.out.println(Arrays.deepToString(questionBank));
+
+		if (!questionBank.equals(newQuestionBank)) {
+			questionBank = newQuestionBank;
+			System.out.println("reset question bank");
+		}
+		
+		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(getClass().getResource("QuestionBank.ser").getFile()))) {
+			out.writeObject(questionBank);
+			out.flush();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void endGame() {
+		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("QuestionBank.ser"))) {
+			out.writeObject(questionBank);
+			out.flush();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static String getNextUncommentedLine(Scanner scanner) {
@@ -84,8 +122,9 @@ public class QuestionGame implements Serializable {
 		}
 		return true;
 	}
-
+	
 	public static void main(String[] args) {
+
 		new QuestionGame();
 	}
 
