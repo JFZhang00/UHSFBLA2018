@@ -75,20 +75,12 @@ public class QuestionGame implements Serializable {
 			questionBank = newQuestionBank;
 			System.out.println("reset question bank");
 		}
-		
-		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(getClass().getResource("QuestionBank.ser").getPath().replace("%20", " ")))) {
-			out.writeObject(questionBank);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
 	}
 
 	public void endGame() {
-		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("/bin/com/zoomiti/fbla/QuestionBank.ser"))) {
+		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(getClass().getResource("QuestionBank.ser").getPath().replace("%20", " ")))) {
 			out.writeObject(questionBank);
-			out.flush();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
