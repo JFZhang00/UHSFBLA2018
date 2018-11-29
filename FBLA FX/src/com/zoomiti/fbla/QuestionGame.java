@@ -1,18 +1,15 @@
 package com.zoomiti.fbla;
 
 import java.io.EOFException;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.Scanner;
 
-public class QuestionGame implements Serializable {
-
-	private static final long serialVersionUID = -1835376843483532245L;
+public class QuestionGame {
+	
 //	public final Score[] HIGH_SCORES = { new Score("Luis", 300), new Score("Jason", 200), new Score("Nick", 100), null,
 //			null, null, null, null, null, null };
 
@@ -44,7 +41,6 @@ public class QuestionGame implements Serializable {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} finally {
-			System.out.println(new File(".").getAbsoluteFile());
 			System.out.println(questionBank);
 		}
 
@@ -115,7 +111,9 @@ public class QuestionGame implements Serializable {
 	}
 	
 	public static void main(String[] args) {
-		new QuestionGame();
+		QuestionGame game = new QuestionGame();
+		
+		game.endGame();
 	}
 
 }
