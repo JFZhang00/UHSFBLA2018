@@ -1,25 +1,22 @@
 package com.zoomiti.fbla;
 
-import java.io.BufferedWriter;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.io.Writer;
 import java.util.Scanner;
 
 public class QuestionGame implements Serializable {
 
 	private static final long serialVersionUID = -1835376843483532245L;
-	public final Score[] HIGH_SCORES = { new Score("Luis", 300), new Score("Jason", 200), new Score("Nick", 100), null,
-			null, null, null, null, null, null };
+//	public final Score[] HIGH_SCORES = { new Score("Luis", 300), new Score("Jason", 200), new Score("Nick", 100), null,
+//			null, null, null, null, null, null };
 
-	private class Score {
+/*	private class Score {
 		@SuppressWarnings("unused")
 		public final String name;
 		@SuppressWarnings("unused")
@@ -30,6 +27,8 @@ public class QuestionGame implements Serializable {
 			this.score = score;
 		}
 	}
+
+*/
 
 	private QuestionBank questionBank;
 
@@ -45,6 +44,7 @@ public class QuestionGame implements Serializable {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} finally {
+			System.out.println(new File(".").getAbsoluteFile());
 			System.out.println(questionBank);
 		}
 
@@ -76,9 +76,8 @@ public class QuestionGame implements Serializable {
 			System.out.println("reset question bank");
 		}
 		
-		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(getClass().getResource("QuestionBank.ser").getFile()))) {
+		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(getClass().getResource("QuestionBank.ser").getPath().replace("%20", " ")))) {
 			out.writeObject(questionBank);
-			out.flush();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -87,7 +86,7 @@ public class QuestionGame implements Serializable {
 	}
 
 	public void endGame() {
-		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("QuestionBank.ser"))) {
+		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("/bin/com/zoomiti/fbla/QuestionBank.ser"))) {
 			out.writeObject(questionBank);
 			out.flush();
 		} catch (FileNotFoundException e) {
@@ -124,7 +123,6 @@ public class QuestionGame implements Serializable {
 	}
 	
 	public static void main(String[] args) {
-
 		new QuestionGame();
 	}
 

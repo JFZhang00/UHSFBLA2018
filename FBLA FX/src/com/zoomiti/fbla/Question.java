@@ -31,6 +31,16 @@ public class Question implements Serializable {
 	}
 	
 	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof Question
+				&& ((Question)obj).question.equals(this.question)
+				&& ((Question)obj).answers[0].equals(this.answers[0])
+				&& ((Question)obj).answers[1].equals(this.answers[1])
+				&& ((Question)obj).answers[2].equals(this.answers[2])
+				&& ((Question)obj).answers[3].equals(this.answers[3]);
+	}
+	
+	@Override
 	public String toString() {
 		return "{Q:" + question + ", A:" + answers[0] + ", B:" + answers[1] + ", C:" + answers[2] + ", D:" + answers[3] + "}";
 	}
