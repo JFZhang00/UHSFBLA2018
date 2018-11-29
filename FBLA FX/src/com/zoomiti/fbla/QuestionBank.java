@@ -50,6 +50,51 @@ public class QuestionBank implements Serializable {
 			throw new IllegalArgumentException("Type does not fall into range of 0-4");
 		}
 	}
+	
+	public Question getRandom(int type) {
+		return this.getRandom(type, 1, 1);
+	}
+	public Question getRandom(int type, int difficulty) {
+		return this.getRandom(type, difficulty, 5);
+	}
+	public Question getRandom(int type, int difficulty, int numDifficulties) {
+		if (difficulty > numDifficulties) {
+			throw new IllegalArgumentException("Difficulty is higher than highest difficulty");
+		}
+		if (difficulty <= 0 || numDifficulties <= 0) {
+			throw new IllegalArgumentException("Difficulties have to be a positive whole number");
+		}
+		ArrayList<Question> questions = null;
+		
+		switch (type) {
+		case 0:
+			questions = questionsType0;
+		break;
+		case 1:
+			questions = questionsType1;
+			break;
+		case 2:
+			questions = questionsType2;
+			break;
+		case 3:
+			questions = questionsType3;
+			break;
+		case 4:
+			questions = questionsType4;
+			break;
+		default:
+			throw new IllegalArgumentException("Type does not fall into range of 0-4");
+		}
+		
+		while (true) {
+			Question question = questions.get((int)(Math.random()*questions.size()));
+			if (question.getDifficulty() <= getAverageDifficulty(type)/numDifficulties *difficulty
+					&& question.getDifficulty() >= getAverageDifficulty(type)/numDifficulties * (difficulty - 1)) {
+				return question;
+			}
+			
+		}
+	}
 
 	public double getAverageDifficulty(int type) {
 		double sum = 0;

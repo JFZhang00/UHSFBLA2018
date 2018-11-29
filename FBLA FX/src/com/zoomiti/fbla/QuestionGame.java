@@ -113,6 +113,8 @@ public class QuestionGame {
 	public static void main(String[] args) {
 		QuestionGame game = new QuestionGame();
 		
+		System.out.println(game.questionBank.getRandom(1));
+		
 		game.endGame();
 	}
 

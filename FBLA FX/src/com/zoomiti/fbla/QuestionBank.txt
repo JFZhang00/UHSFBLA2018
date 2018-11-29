@@ -23,13 +23,6 @@ Jason
 
 2
 a
-b
-a
-a
-a
-
-2
-a
 a
 a
 a
@@ -41,3 +34,10 @@ b
 b
 b
 b
+
+2
+c
+c
+c
+c
+c

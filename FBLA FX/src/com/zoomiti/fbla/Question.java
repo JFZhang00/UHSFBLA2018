@@ -7,8 +7,8 @@ public class Question implements Serializable {
 	private static final long serialVersionUID = -2166565667500993330L;
 	public final String question;
 	public final String[] answers;
-	private int numRight;
-	private int numTotal;
+	private int numRight = 1;
+	private int numTotal = 1;
 	
 	public Question(String question, String... answers) {
 		this.question = question;
