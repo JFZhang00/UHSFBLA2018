@@ -8,14 +8,14 @@ import javafx.scene.Scene;
 
 public enum Scenes {
 	Title(),
-	Credits();
+	Instructions();
 
 	private Scene scene;
 
 	private Scenes() {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("../FXML/" + this + " Screen.fxml"));
-			scene = new Scene(root, 400, 300);
+			scene = new Scene(root, 800, 600);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		} catch (IOException e) {
 			System.err.println("Wrong file name idiot!");
