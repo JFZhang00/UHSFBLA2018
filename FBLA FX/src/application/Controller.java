@@ -159,10 +159,10 @@ public class Controller {
 		Question.setText(questionNumber + ") " + question.question);
 		switch ((int) (Math.random() * 4)) {
 		case 0:
-			AnswerA.setText(question.answers[0]);
-			AnswerB.setText(question.answers[1]);
-			AnswerC.setText(question.answers[2]);
-			AnswerD.setText(question.answers[3]);
+			AnswerA.setText("A)" + question.answers[0]);
+			AnswerB.setText("B)" + question.answers[1]);
+			AnswerC.setText("C)" + question.answers[2]);
+			AnswerD.setText("D)" + question.answers[3]);
 			AnswerA.setOnMouseClicked(rightAnswer);
 			AnswerA.setOnAction(rightAnswer2);
 			AnswerB.setOnMouseClicked(wrongAnswer);
@@ -173,10 +173,10 @@ public class Controller {
 			AnswerD.setOnAction(wrongAnswer2);
 			break;
 		case 1:
-			AnswerA.setText(question.answers[1]);
-			AnswerB.setText(question.answers[0]);
-			AnswerC.setText(question.answers[2]);
-			AnswerD.setText(question.answers[3]);
+			AnswerA.setText("A)" + question.answers[1]);
+			AnswerB.setText("B)" + question.answers[0]);
+			AnswerC.setText("C)" + question.answers[2]);
+			AnswerD.setText("D)" + question.answers[3]);
 			AnswerA.setOnMouseClicked(wrongAnswer);
 			AnswerA.setOnAction(wrongAnswer2);
 			AnswerB.setOnMouseClicked(rightAnswer);
@@ -187,10 +187,10 @@ public class Controller {
 			AnswerD.setOnAction(wrongAnswer2);
 			break;
 		case 2:
-			AnswerA.setText(question.answers[2]);
-			AnswerB.setText(question.answers[1]);
-			AnswerC.setText(question.answers[0]);
-			AnswerD.setText(question.answers[3]);
+			AnswerA.setText("A)" + question.answers[2]);
+			AnswerB.setText("B)" + question.answers[1]);
+			AnswerC.setText("C)" + question.answers[0]);
+			AnswerD.setText("D)" + question.answers[3]);
 			AnswerA.setOnMouseClicked(wrongAnswer);
 			AnswerA.setOnAction(wrongAnswer2);
 			AnswerB.setOnMouseClicked(wrongAnswer);
@@ -201,11 +201,10 @@ public class Controller {
 			AnswerD.setOnAction(wrongAnswer2);
 			break;
 		case 3:
-			Question.setText(question.question);
-			AnswerA.setText(question.answers[3]);
-			AnswerB.setText(question.answers[1]);
-			AnswerC.setText(question.answers[2]);
-			AnswerD.setText(question.answers[0]);
+			AnswerA.setText("A)" + question.answers[3]);
+			AnswerB.setText("B)" + question.answers[1]);
+			AnswerC.setText("C)" + question.answers[2]);
+			AnswerD.setText("D)" + question.answers[0]);
 			AnswerA.setOnMouseClicked(wrongAnswer);
 			AnswerA.setOnAction(wrongAnswer2);
 			AnswerB.setOnMouseClicked(wrongAnswer);
