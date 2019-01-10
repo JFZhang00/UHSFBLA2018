@@ -1,6 +1,7 @@
 package application;
 
 import com.zoomiti.fbla.Question;
+import com.zoomiti.fbla.QuestionGame;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,6 +13,7 @@ public class Controller {
 	private int score;
 	private int questionNumber;
 	private int multiplier;
+	private QuestionGame questionGame;
 	
 	public static Stage stage;
 
@@ -91,6 +93,8 @@ public class Controller {
 		questionNumber = 1;
 		score = 0;
 		multiplier = 1;
+		questionGame = new QuestionGame();
+		newQuestion(questionGame.questionBank.getRandom());
 	}
 
 	@FXML
