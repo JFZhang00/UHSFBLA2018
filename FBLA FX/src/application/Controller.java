@@ -126,6 +126,7 @@ public class Controller {
 		switch ((int) (Math.random() * 4)) {
 		case 0:
 			AScore.setText(score + "");
+			AMultiplier.setText(multiplier + "x");
 			AQuestionNumber.setText(questionNumber + "");
 			AQuestion.setText(question.question);
 			AAnswerA.setText(question.answers[0]);
@@ -136,6 +137,7 @@ public class Controller {
 			break;
 		case 1:
 			BScore.setText(score + "");
+			BMultiplier.setText(multiplier + "x");
 			BQuestionNumber.setText(questionNumber + "");
 			BQuestion.setText(question.question);
 			BAnswerA.setText(question.answers[1]);
@@ -146,6 +148,7 @@ public class Controller {
 			break;
 		case 2:
 			CScore.setText(score + "");
+			CMultiplier.setText(multiplier + "x");
 			CQuestionNumber.setText(questionNumber + "");
 			CQuestion.setText(question.question);
 			CAnswerA.setText(question.answers[2]);
@@ -156,6 +159,7 @@ public class Controller {
 			break;
 		case 3:
 			DScore.setText(score + "");
+			DMultiplier.setText(multiplier + "x");
 			DQuestionNumber.setText(questionNumber + "");
 			DQuestion.setText(question.question);
 			DAnswerA.setText(question.answers[3]);

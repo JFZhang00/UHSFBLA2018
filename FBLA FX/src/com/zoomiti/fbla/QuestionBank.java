@@ -51,6 +51,10 @@ public class QuestionBank implements Serializable {
 		}
 	}
 	
+	public Question getRandom() {
+		return this.getRandom((int)(Math.random() *4));
+	}
+	
 	public Question getRandom(int type) {
 		return this.getRandom(type, 1, 1);
 	}

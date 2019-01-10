@@ -131,8 +131,6 @@ When was PBL started?
 1990
 1994
 
-
-
 1
 Who is the FBLA Arizona President?
 Jaime Manuel Peres
@@ -348,6 +346,41 @@ Be voted in by members
 Be a paid member in active status
 Have attended at least one conference
 Have completed at least 1 [BAA for FBLA; CMAP for PBL] level
+
+5
+How long after the first chapter of FBLA was the second created?
+2 days
+2 months
+2 years
+2 weeks
+
+5
+At the end of the first year of FBLA how many chapters were added?
+39
+6
+13
+94
+
+5
+When was the middle school division on FBLA created?
+1994
+1973
+2001
+1969
+
+5
+In 1979, what division was added to FBLA
+The Alumni Division
+The preK Division
+The State Officer Division
+The Education Division
+
+5
+What university was the first to have a FBLA chapter?
+University of Northern Iowa
+Columbia University
+Harvard
+University of Texas at Austin
 
 
 

@@ -9,23 +9,22 @@ import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 public class QuestionGame {
-	
-//	public final Score[] HIGH_SCORES = { new Score("Luis", 300), new Score("Jason", 200), new Score("Nick", 100), null,
-//			null, null, null, null, null, null };
 
-/*	private class Score {
-		@SuppressWarnings("unused")
-		public final String name;
-		@SuppressWarnings("unused")
-		public final int score;
+	// public final Score[] HIGH_SCORES = { new Score("Luis", 300), new
+	// Score("Jason", 200), new Score("Nick", 100), null,
+	// null, null, null, null, null, null };
 
-		public Score(String name, int score) {
-			this.name = name;
-			this.score = score;
-		}
-	}
-
-*/
+	/*
+	 * private class Score {
+	 * 
+	 * @SuppressWarnings("unused") public final String name;
+	 * 
+	 * @SuppressWarnings("unused") public final int score;
+	 * 
+	 * public Score(String name, int score) { this.name = name; this.score = score;
+	 * } }
+	 * 
+	 */
 
 	private QuestionBank questionBank;
 
@@ -33,7 +32,7 @@ public class QuestionGame {
 		QuestionBank newQuestionBank = new QuestionBank();
 
 		try (ObjectInputStream in = new ObjectInputStream(getClass().getResourceAsStream("QuestionBank.ser"))) {
-			questionBank = (QuestionBank)in.readObject();
+			questionBank = (QuestionBank) in.readObject();
 		} catch (EOFException e) {
 			questionBank = new QuestionBank();
 		} catch (IOException e) {
@@ -54,10 +53,8 @@ public class QuestionGame {
 					String wrongAnswer1 = getNextUncommentedLine(questionReader);
 					String wrongAnswer2 = getNextUncommentedLine(questionReader);
 					String wrongAnswer3 = getNextUncommentedLine(questionReader);
-					if (!(isInteger(question, 10) || isInteger(rightAnswer, 10) || isInteger(wrongAnswer1, 10)
-							|| isInteger(wrongAnswer2, 10) || isInteger(wrongAnswer3, 10))
-							&& !(question.isEmpty() || rightAnswer.isEmpty() || wrongAnswer1.isEmpty()
-									|| wrongAnswer2.isEmpty() || wrongAnswer3.isEmpty())) {
+					if (!isInteger(question, 10) && !(question.isEmpty() || rightAnswer.isEmpty()
+							|| wrongAnswer1.isEmpty() || wrongAnswer2.isEmpty() || wrongAnswer3.isEmpty())) {
 						newQuestionBank.add(type,
 								new Question(question, rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3));
 					} else {
@@ -75,7 +72,8 @@ public class QuestionGame {
 	}
 
 	public void endGame() {
-		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(getClass().getResource("QuestionBank.ser").getPath().replace("%20", " ")))) {
+		try (ObjectOutputStream out = new ObjectOutputStream(
+				new FileOutputStream(getClass().getResource("QuestionBank.ser").getPath().replace("%20", " ")))) {
 			out.writeObject(questionBank);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -109,12 +107,12 @@ public class QuestionGame {
 		}
 		return true;
 	}
-	
+
 	public static void main(String[] args) {
 		QuestionGame game = new QuestionGame();
-		
-		System.out.println(game.questionBank.getRandom(1));
-		
+
+		System.out.println(game.questionBank.getRandom(0));
+
 		game.endGame();
 	}
 
