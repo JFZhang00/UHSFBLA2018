@@ -5,15 +5,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller" fx:id="TitleScreenLayout">
    <children>
       <Label layoutX="149.0" layoutY="62.0" prefHeight="157.0" prefWidth="532.0" text="FBLA QUIZ" textFill="#cd0b0b" AnchorPane.leftAnchor="149.0" AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="62.0">
          <font>
             <Font size="96.0" />
          </font>
       </Label>
-      <Button fx:id="Play" layoutX="270.0" layoutY="300.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="260.0" text="PLAY" />
-      <Button fx:id="Instructions" layoutX="340.0" layoutY="404.0" mnemonicParsing="false" onAction="#setInstructions" prefHeight="53.0" prefWidth="122.0" text="Instructions" />
+      <Button fx:id="PlayButton" layoutX="270.0" layoutY="300.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="260.0" text="PLAY" />
+      <Button fx:id="InstructionsButton" layoutX="340.0" layoutY="404.0" mnemonicParsing="false" onAction="#setInstructions" prefHeight="53.0" prefWidth="122.0" text="Instructions" />
       <Label layoutX="388.0" layoutY="185.0" text="V1.0" AnchorPane.leftAnchor="388.0" AnchorPane.rightAnchor="385.0" AnchorPane.topAnchor="185.0" />
    </children>
 </AnchorPane>

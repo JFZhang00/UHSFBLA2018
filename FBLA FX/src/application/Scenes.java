@@ -8,7 +8,11 @@ import javafx.scene.Scene;
 
 public enum Scenes {
 	Title(),
-	Instructions();
+	Instructions(),
+	GameA(),
+	GameB(),
+	GameC(),
+	GameD();
 
 	private Scene scene;
 

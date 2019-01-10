@@ -69,7 +69,7 @@ public class QuestionBank implements Serializable {
 		switch (type) {
 		case 0:
 			questions = questionsType0;
-		break;
+			break;
 		case 1:
 			questions = questionsType1;
 			break;
