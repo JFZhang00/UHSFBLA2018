@@ -3,6 +3,8 @@ package application;
 import com.zoomiti.fbla.Question;
 import com.zoomiti.fbla.QuestionGame;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,83 +12,53 @@ import javafx.stage.Stage;
 
 public class Controller {
 
-	private int score;
-	private int questionNumber;
-	private int multiplier;
-	private QuestionGame questionGame;
-	
+	public final static Controller controllerMain = new Controller();
 	public static Stage stage;
 
 	/*
 	 * Game Screen Buttons / Labels
 	 */
 	@FXML
-	private Label AScore;
+	private Label Score;
 	@FXML
-	private Label AMultiplier;
+	private Label Multiplier;
 	@FXML
-	private Label AQuestionNumber;
+	private Label Question;
 	@FXML
-	private Label AQuestion;
+	private Button AnswerA;
 	@FXML
-	private Button AAnswerA;
+	private Button AnswerB;
 	@FXML
-	private Button AAnswerB;
+	private Button AnswerC;
 	@FXML
-	private Button AAnswerC;
-	@FXML
-	private Button AAnswerD;
+	private Button AnswerD;
 
 	@FXML
-	private Label BScore;
-	@FXML
-	private Label BMultiplier;
-	@FXML
-	private Label BQuestionNumber;
-	@FXML
-	private Label BQuestion;
-	@FXML
-	private Button BAnswerA;
-	@FXML
-	private Button BAnswerB;
-	@FXML
-	private Button BAnswerC;
-	@FXML
-	private Button BAnswerD;
+	private Label FinalScore;
 
-	@FXML
-	private Label CScore;
-	@FXML
-	private Label CMultiplier;
-	@FXML
-	private Label CQuestionNumber;
-	@FXML
-	private Label CQuestion;
-	@FXML
-	private Button CAnswerA;
-	@FXML
-	private Button CAnswerB;
-	@FXML
-	private Button CAnswerC;
-	@FXML
-	private Button CAnswerD;
-
-	@FXML
-	private Label DScore;
-	@FXML
-	private Label DMultiplier;
-	@FXML
-	private Label DQuestionNumber;
-	@FXML
-	private Label DQuestion;
-	@FXML
-	private Button DAnswerA;
-	@FXML
-	private Button DAnswerB;
-	@FXML
-	private Button DAnswerC;
-	@FXML
-	private Button DAnswerD;
+	private int score;
+	private int questionNumber;
+	private int multiplier;
+	private QuestionGame questionGame;
+	private boolean initialized = false;
+	
+	private EventHandler<Event> rightAnswer = event -> {
+		questionNumber++;
+		score += 10 * multiplier;
+		multiplier += 1;
+		updateSore();
+		if (questionNumber <= 10) {
+			newQuestion(questionGame.questionBank.getRandom());
+		} else {
+			FinalScore.setText(score + " points!");
+			Scenes.End.switchScene();
+		}
+	};
+	private EventHandler<Event> wrongAnswer = event -> {
+		multiplier = 1;
+		score -= 5;
+		updateSore();
+	};
 
 	@FXML
 	private void playButton() {
@@ -95,6 +67,19 @@ public class Controller {
 		multiplier = 1;
 		questionGame = new QuestionGame();
 		newQuestion(questionGame.questionBank.getRandom());
+
+		if (!initialized)
+			setUpWrapping();
+
+	}
+
+	private void setUpWrapping() {
+		Question.setWrapText(true);
+		AnswerA.setWrapText(true);
+		AnswerB.setWrapText(true);
+		AnswerC.setWrapText(true);
+		AnswerD.setWrapText(true);
+		initialized = true;
 	}
 
 	@FXML
@@ -107,72 +92,58 @@ public class Controller {
 		Scenes.Title.switchScene();
 	}
 
-	@FXML
-	private void rightAnswer() {
-		questionNumber++;
-		score += 10 * multiplier;
-		multiplier += .25;
-		if (questionNumber <= 10) {
-			newQuestion(new Question("", "", "", "", ""));
-		} else {
-			
-		}
-	}
-
-	@FXML
-	private void wrongAnswer() {
-		multiplier = 1;
-		score -= 5;
+	private void updateSore() {
+		Score.setText(score + "");
+		Multiplier.setText(multiplier + "x");
 	}
 
 	private void newQuestion(Question question) {
-
+		updateSore();
+		Question.setText(questionNumber + ") " + question.question);
 		switch ((int) (Math.random() * 4)) {
 		case 0:
-			AScore.setText(score + "");
-			AMultiplier.setText(multiplier + "x");
-			AQuestionNumber.setText(questionNumber + "");
-			AQuestion.setText(question.question);
-			AAnswerA.setText(question.answers[0]);
-			AAnswerB.setText(question.answers[1]);
-			AAnswerC.setText(question.answers[2]);
-			AAnswerD.setText(question.answers[3]);
-			Scenes.GameA.switchScene();
+			AnswerA.setText(question.answers[0]);
+			AnswerB.setText(question.answers[1]);
+			AnswerC.setText(question.answers[2]);
+			AnswerD.setText(question.answers[3]);
+			AnswerA.setOnMouseClicked(rightAnswer);
+			AnswerB.setOnMouseClicked(wrongAnswer);
+			AnswerC.setOnMouseClicked(wrongAnswer);
+			AnswerD.setOnMouseClicked(wrongAnswer);
 			break;
 		case 1:
-			BScore.setText(score + "");
-			BMultiplier.setText(multiplier + "x");
-			BQuestionNumber.setText(questionNumber + "");
-			BQuestion.setText(question.question);
-			BAnswerA.setText(question.answers[1]);
-			BAnswerB.setText(question.answers[0]);
-			BAnswerC.setText(question.answers[2]);
-			BAnswerD.setText(question.answers[3]);
-			Scenes.GameB.switchScene();
+			AnswerA.setText(question.answers[1]);
+			AnswerB.setText(question.answers[0]);
+			AnswerC.setText(question.answers[2]);
+			AnswerD.setText(question.answers[3]);
+			AnswerA.setOnMouseClicked(wrongAnswer);
+			AnswerB.setOnMouseClicked(rightAnswer);
+			AnswerC.setOnMouseClicked(wrongAnswer);
+			AnswerD.setOnMouseClicked(wrongAnswer);
 			break;
 		case 2:
-			CScore.setText(score + "");
-			CMultiplier.setText(multiplier + "x");
-			CQuestionNumber.setText(questionNumber + "");
-			CQuestion.setText(question.question);
-			CAnswerA.setText(question.answers[2]);
-			CAnswerB.setText(question.answers[1]);
-			CAnswerC.setText(question.answers[0]);
-			CAnswerD.setText(question.answers[3]);
-			Scenes.GameC.switchScene();
+			AnswerA.setText(question.answers[2]);
+			AnswerB.setText(question.answers[1]);
+			AnswerC.setText(question.answers[0]);
+			AnswerD.setText(question.answers[3]);
+			AnswerA.setOnMouseClicked(wrongAnswer);
+			AnswerB.setOnMouseClicked(wrongAnswer);
+			AnswerC.setOnMouseClicked(rightAnswer);
+			AnswerD.setOnMouseClicked(wrongAnswer);
 			break;
 		case 3:
-			DScore.setText(score + "");
-			DMultiplier.setText(multiplier + "x");
-			DQuestionNumber.setText(questionNumber + "");
-			DQuestion.setText(question.question);
-			DAnswerA.setText(question.answers[3]);
-			DAnswerB.setText(question.answers[1]);
-			DAnswerC.setText(question.answers[2]);
-			DAnswerD.setText(question.answers[0]);
-			Scenes.GameD.switchScene();
+			Question.setText(question.question);
+			AnswerA.setText(question.answers[3]);
+			AnswerB.setText(question.answers[1]);
+			AnswerC.setText(question.answers[2]);
+			AnswerD.setText(question.answers[0]);
+			AnswerA.setOnMouseClicked(wrongAnswer);
+			AnswerB.setOnMouseClicked(wrongAnswer);
+			AnswerC.setOnMouseClicked(wrongAnswer);
+			AnswerD.setOnMouseClicked(rightAnswer);
 			break;
 		}
+		Scenes.Game.switchScene();
 
 	}
 

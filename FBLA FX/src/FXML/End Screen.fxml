@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="application.Controller">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="115.0" layoutY="67.0" text="YOUR RESULTS ARE IN!">
          <font>
@@ -18,11 +17,11 @@
             <Font size="32.0" />
          </font>
       </Label>
-      <Label layoutX="346.0" layoutY="252.0" prefHeight="48.0" prefWidth="108.0" text="Score" textFill="RED">
+      <Label fx:id="FinalScore" layoutX="300.0" layoutY="252.0" prefHeight="48.0" prefWidth="200.0" text="Score" textFill="RED">
          <font>
             <Font size="39.0" />
          </font>
       </Label>
-      <Button layoutX="287.0" layoutY="366.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="228.0" text="Play Again?" />
+      <Button layoutX="287.0" layoutY="366.0" mnemonicParsing="false" onMouseClicked="#setTitleScreen" onTouchPressed="#setTitleScreen" prefHeight="115.0" prefWidth="228.0" text="Play Again?" />
    </children>
 </AnchorPane>

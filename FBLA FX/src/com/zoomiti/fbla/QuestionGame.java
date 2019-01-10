@@ -26,7 +26,7 @@ public class QuestionGame {
 	 * 
 	 */
 
-	private QuestionBank questionBank;
+	public QuestionBank questionBank;
 
 	public QuestionGame() {
 		QuestionBank newQuestionBank = new QuestionBank();
@@ -40,7 +40,7 @@ public class QuestionGame {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} finally {
-			System.out.println(questionBank);
+			//System.out.println(questionBank);
 		}
 
 		try (Scanner questionReader = new Scanner(getClass().getResourceAsStream("QuestionBank.txt"))) {

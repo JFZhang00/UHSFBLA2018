@@ -110,19 +110,19 @@ public class QuestionBank implements Serializable {
 		case 1:
 			for (Question question : questionsType1)
 				sum += question.getDifficulty();
-			return sum / questionsType0.size();
+			return sum / questionsType1.size();
 		case 2:
 			for (Question question : questionsType2)
 				sum += question.getDifficulty();
-			return sum / questionsType0.size();
+			return sum / questionsType2.size();
 		case 3:
 			for (Question question : questionsType3)
 				sum += question.getDifficulty();
-			return sum / questionsType0.size();
+			return sum / questionsType3.size();
 		case 4:
 			for (Question question : questionsType0)
 				sum += question.getDifficulty();
-			return sum / questionsType0.size();
+			return sum / questionsType4.size();
 		default:
 			throw new IllegalArgumentException("Type does not fall into range of 0-4");
 		}
