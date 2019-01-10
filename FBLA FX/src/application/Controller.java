@@ -3,11 +3,14 @@ package application;
 import com.zoomiti.fbla.Question;
 import com.zoomiti.fbla.QuestionGame;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class Controller {
@@ -39,13 +42,14 @@ public class Controller {
 	private int score;
 	private int questionNumber;
 	private int multiplier;
-	private QuestionGame questionGame;
+	public static QuestionGame questionGame;
 	private boolean initialized = false;
-	
+
 	private EventHandler<Event> rightAnswer = event -> {
 		questionNumber++;
 		score += 10 * multiplier;
-		multiplier += 1;
+		multiplier += AnswerA.isDisabled() || AnswerB.isDisabled() || AnswerC.isDisabled() || AnswerD.isDisabled() ? 0
+				: 1;
 		updateSore();
 		if (questionNumber <= 10) {
 			newQuestion(questionGame.questionBank.getRandom());
@@ -55,17 +59,66 @@ public class Controller {
 		}
 	};
 	private EventHandler<Event> wrongAnswer = event -> {
+		Button button = (Button) event.getSource();
+		button.setDisable(true);
 		multiplier = 1;
 		score -= 5;
 		updateSore();
 	};
+
+	private EventHandler<ActionEvent> rightAnswer2 = event -> {
+		questionNumber++;
+		score += 10 * multiplier;
+		multiplier += AnswerA.isDisabled() || AnswerB.isDisabled() || AnswerC.isDisabled() || AnswerD.isDisabled() ? 0
+				: 1;
+		updateSore();
+		if (questionNumber <= 10) {
+			newQuestion(questionGame.questionBank.getRandom());
+		} else {
+			FinalScore.setText(score + " points!");
+			Scenes.End.switchScene();
+		}
+	};
+	private EventHandler<ActionEvent> wrongAnswer2 = event -> {
+		Button button = (Button) event.getSource();
+		button.setDisable(true);
+		multiplier = 1;
+		score -= 5;
+		updateSore();
+	};
+	
+	public final EventHandler<KeyEvent> eventHandler = event -> {
+		System.out.println(event.getCode());
+		switch (event.getCode()) {
+		case A:
+			AnswerA.fire();
+			break;
+		case B:
+			AnswerB.fire();
+			break;
+		case C:
+			AnswerC.fire();
+			break;
+		case D:
+			AnswerD.fire();
+			break;
+		case ESCAPE:
+			Platform.exit();
+			break;
+		default:
+		}
+		event.consume();
+	};
+
+	public void stop() {
+		questionGame.endGame();
+	}
 
 	@FXML
 	private void playButton() {
 		questionNumber = 1;
 		score = 0;
 		multiplier = 1;
-		questionGame = new QuestionGame();
 		newQuestion(questionGame.questionBank.getRandom());
 
 		if (!initialized)
@@ -98,6 +151,10 @@ public class Controller {
 	}
 
 	private void newQuestion(Question question) {
+		AnswerA.setDisable(false);
+		AnswerB.setDisable(false);
+		AnswerC.setDisable(false);
+		AnswerD.setDisable(false);
 		updateSore();
 		Question.setText(questionNumber + ") " + question.question);
 		switch ((int) (Math.random() * 4)) {
@@ -107,9 +164,13 @@ public class Controller {
 			AnswerC.setText(question.answers[2]);
 			AnswerD.setText(question.answers[3]);
 			AnswerA.setOnMouseClicked(rightAnswer);
+			AnswerA.setOnAction(rightAnswer2);
 			AnswerB.setOnMouseClicked(wrongAnswer);
+			AnswerB.setOnAction(wrongAnswer2);
 			AnswerC.setOnMouseClicked(wrongAnswer);
+			AnswerC.setOnAction(wrongAnswer2);
 			AnswerD.setOnMouseClicked(wrongAnswer);
+			AnswerD.setOnAction(wrongAnswer2);
 			break;
 		case 1:
 			AnswerA.setText(question.answers[1]);
@@ -117,9 +178,13 @@ public class Controller {
 			AnswerC.setText(question.answers[2]);
 			AnswerD.setText(question.answers[3]);
 			AnswerA.setOnMouseClicked(wrongAnswer);
+			AnswerA.setOnAction(wrongAnswer2);
 			AnswerB.setOnMouseClicked(rightAnswer);
+			AnswerB.setOnAction(rightAnswer2);
 			AnswerC.setOnMouseClicked(wrongAnswer);
+			AnswerC.setOnAction(wrongAnswer2);
 			AnswerD.setOnMouseClicked(wrongAnswer);
+			AnswerD.setOnAction(wrongAnswer2);
 			break;
 		case 2:
 			AnswerA.setText(question.answers[2]);
@@ -127,9 +192,13 @@ public class Controller {
 			AnswerC.setText(question.answers[0]);
 			AnswerD.setText(question.answers[3]);
 			AnswerA.setOnMouseClicked(wrongAnswer);
+			AnswerA.setOnAction(wrongAnswer2);
 			AnswerB.setOnMouseClicked(wrongAnswer);
+			AnswerB.setOnAction(wrongAnswer2);
 			AnswerC.setOnMouseClicked(rightAnswer);
+			AnswerC.setOnAction(rightAnswer2);
 			AnswerD.setOnMouseClicked(wrongAnswer);
+			AnswerD.setOnAction(wrongAnswer2);
 			break;
 		case 3:
 			Question.setText(question.question);
@@ -138,9 +207,13 @@ public class Controller {
 			AnswerC.setText(question.answers[2]);
 			AnswerD.setText(question.answers[0]);
 			AnswerA.setOnMouseClicked(wrongAnswer);
+			AnswerA.setOnAction(wrongAnswer2);
 			AnswerB.setOnMouseClicked(wrongAnswer);
+			AnswerB.setOnAction(wrongAnswer2);
 			AnswerC.setOnMouseClicked(wrongAnswer);
+			AnswerC.setOnAction(wrongAnswer2);
 			AnswerD.setOnMouseClicked(rightAnswer);
+			AnswerD.setOnAction(rightAnswer2);
 			break;
 		}
 		Scenes.Game.switchScene();
