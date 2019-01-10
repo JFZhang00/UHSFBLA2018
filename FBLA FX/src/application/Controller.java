@@ -21,7 +21,7 @@ public class Controller {
 	/*
 	 * Game Screen Buttons / Labels
 	 */
-	@FXML
+	@FXM
 	private Label Score;
 	@FXML
 	private Label Multiplier;
