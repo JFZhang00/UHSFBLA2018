@@ -10,7 +10,7 @@ import javafx.scene.input.KeyEvent;
 public enum Scenes {
 	Title(), Instructions(), Game(), End();
 
-	public Scene scee;
+	public Scene scene;
 	
 	
 	private Scenes() {

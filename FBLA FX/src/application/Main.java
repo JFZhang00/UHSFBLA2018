@@ -13,7 +13,7 @@ public class Main extends Application {
 		Controller.questionGame = new QuestionGame();
 		
 		Scenes.Title.switchScene();
-		Scenes.setUpHanders();
+		Scenes.setUpHandlers();
 		
 		primaryStage.show();
 	}
